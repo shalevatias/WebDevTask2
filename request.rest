@@ -1,0 +1,51 @@
+POST http://localhost:3000/post
+Content-Type: application/json
+
+{
+  "senderId": "12345",
+  "title": "post title",
+  "content": "post content"
+}
+
+
+GET http://localhost:3000/post
+
+
+GET http://localhost:3000/post/{{postId}}
+
+
+PUT http://localhost:3000/post/{{postId}}
+Content-Type: application/json
+
+{
+  "title": "Edited title",
+  "content": "Edited content"
+}
+
+POST http://localhost:3000/comments
+Content-Type: application/json
+
+{
+  "postId": "{{postId}}",
+  "text": "some text"
+}
+
+
+GET http://localhost:3000/comments
+
+
+GET http://localhost:3000/comments/{{commentId}}
+
+
+PUT http://localhost:3000/comments/{{commentId}}
+Content-Type: application/json
+
+{
+  "text": "Updated comment"
+}
+
+
+DELETE http://localhost:3000/comments/{{commentId}}
+
+
+GET http://localhost:3000/comments/post/{{postId}}
