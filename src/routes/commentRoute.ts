@@ -7,9 +7,9 @@ import {
   updateComment,
   deleteComment
 } from '../controllers/commentController';
+import { authMiddleware } from '../middleware/authMiddleware';
 
 const router = Router();
-// added some auth to make it easier
 
 /**
  * @swagger
@@ -41,7 +41,7 @@ const router = Router();
  *       404:
  *         description: Post not found
  */
-router.post('/', createComment);
+router.post('/', authMiddleware, createComment);
 
 /**
  * @swagger
@@ -123,7 +123,7 @@ router.get('/post/:postId', getCommentsByPost);
  *       404:
  *         description: Comment not found
  */
-router.put('/:id', updateComment);
+router.put('/:id', authMiddleware, updateComment);
 
 /**
  * @swagger
@@ -147,6 +147,6 @@ router.put('/:id', updateComment);
  *       404:
  *         description: Comment not found
  */
-router.delete('/:id', deleteComment);
+router.delete('/:id', authMiddleware, deleteComment);
 
 export default router;

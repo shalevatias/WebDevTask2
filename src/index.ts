@@ -7,10 +7,10 @@ const PORT = process.env.PORT || 3000;
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
-    console.log('MongoDB connected (Port 27017)');
+    console.log('MongoDB connected');
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
-      console.log(`Swagger available at http://localhost:${PORT}/api-docs`);
+      console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`);
     });
   })
   .catch(err => console.error('DB connection error:', err));
