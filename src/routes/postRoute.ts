@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { createPost, getPosts, getPost, updatePost, deletePost } from '../controllers/postController';
+import { authMiddleware } from '../middleware/authMiddleware';
 
 const router = Router();
-// added some auth to make it easier
 
 /**
  * @swagger
@@ -32,7 +32,7 @@ const router = Router();
  *       400:
  *         description: Bad request
  */
-router.post('/', createPost);
+router.post('/', authMiddleware, createPost);
 
 /**
  * @swagger
@@ -104,7 +104,7 @@ router.get('/:id', getPost);
  *       404:
  *         description: Post not found
  */
-router.put('/:id', updatePost);
+router.put('/:id', authMiddleware, updatePost);
 
 /**
  * @swagger
@@ -128,6 +128,6 @@ router.put('/:id', updatePost);
  *       404:
  *         description: Post not found
  */
-router.delete('/:id', deletePost);
+router.delete('/:id', authMiddleware, deletePost);
 
 export default router;
