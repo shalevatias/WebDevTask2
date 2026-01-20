@@ -1,11 +1,14 @@
 import { Request, Response } from 'express';
 import Post from '../models/postModel';
-import { AuthRequest } from '../types';
 
-export const createPost = async (req: AuthRequest, res: Response): Promise<void> => {
+export const createPost = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { title, content } = req.body;
-    const owner = req.userId;
+    const { title, content, owner } = req.body;
+    
+    if (!title || !content || !owner) {
+      res.status(400).json({ error: 'Title, content, and owner are required' });
+      return;
+    }
 
     if (!title || !content) {
       res.status(400).json({ error: 'Title and content are required' });
@@ -46,18 +49,13 @@ export const getPost = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-export const updatePost = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updatePost = async (req: Request, res: Response): Promise<void> => {
   try {
     const { title, content } = req.body;
     const post = await Post.findById(req.params.id);
 
     if (!post) {
       res.status(404).json({ error: 'Post not found' });
-      return;
-    }
-
-    if (String(post.owner) !== String(req.userId)) {
-      res.status(403).json({ error: 'Not authorized to update this post' });
       return;
     }
 
@@ -73,17 +71,12 @@ export const updatePost = async (req: AuthRequest, res: Response): Promise<void>
   }
 };
 
-export const deletePost = async (req: AuthRequest, res: Response): Promise<void> => {
+export const deletePost = async (req: Request, res: Response): Promise<void> => {
   try {
     const post = await Post.findById(req.params.id);
 
     if (!post) {
       res.status(404).json({ error: 'Post not found' });
-      return;
-    }
-
-    if (String(post.owner) !== String(req.userId)) {
-      res.status(403).json({ error: 'Not authorized to delete this post' });
       return;
     }
 
