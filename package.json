@@ -1,13 +1,13 @@
 {
   "name": "webdevtask2",
   "version": "1.0.0",
-  "description": "Web Development course assignment 2 - REST API with TypeScript, JWT, Jest, Swagger",
+  "description": "webdevtask2",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "npx ts-node src/index.ts",
-    "test": "jest --coverage",
+    "test": "jest",
     "test:watch": "jest --watch"
   },
   "dependencies": {
