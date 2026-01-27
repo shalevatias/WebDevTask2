@@ -16,7 +16,7 @@ const swaggerOptions = {
     info: {
       title: 'WebDevTask2 API',
       version: '1.0.0',
-      description: 'REST API with User Authentication, Posts, and Comments'
+      description: 'webdevtask2'
     },
     servers: [
       {

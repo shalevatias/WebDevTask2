@@ -20,11 +20,3 @@ afterEach(async () => {
     await collections[key].deleteMany({});
   }
 });
-
-/*
-  Tests: 19 tests, all passing
-  - 4 auth tests (register, login, logout, refresh)
-  - 4 user tests (get all, get by id, update, delete)
-  - 5 post tests (create, get all, get by id, update, delete)
-  - 6 comment tests (create, get all, get by id, get by post, update, delete)
-*/
